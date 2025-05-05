@@ -139,7 +139,7 @@ void *coalesce(free_block *block) {
 //start here
 void *do_alloc(size_t size) {
     void *p = sbrk(size);
-    return *p;
+    //return *p;
 }
 
 /**
@@ -148,9 +148,26 @@ void *do_alloc(size_t size) {
  * @param size The amount of memory to allocate
  * @return A pointer to the requested block of memory
  */
-void *tumalloc(size_t size) {
-    // same as malloc
-    
+void *tumalloc(size_t size) {  // same as malloc
+    // if (HEAD = NULL) {
+    //     ptr = do_alloc(size);
+    //     return ptr;
+    // }
+    // else {
+    //     for (block in free_list) {
+    //         if (size <= block.size) {
+    //             ptr = split(block, size+sizeof(header));
+    //             remove_free_block(header);
+    //             size_of_header = size;
+    //             magic of header = 0x01234567;
+    //             return pointer to start of user requested memory;
+    //         }
+    //     }
+    //     if no block is big enough {
+    //         ptr = do_alloc(size);
+    //         return ptr;
+    //     }
+    // }
     return NULL;
 }
 
@@ -174,9 +191,9 @@ void *tucalloc(size_t num, size_t size) {
  * @param new_size The new requested size to allocate
  * @return A new pointer containing the contents of ptr, but with the new_size
  */
-void *turealloc(void *ptr, size_t new_size) {
-    // same as realloc
+void *turealloc(void *ptr, size_t new_size) { //same as realloc
     // i have a block of memory and i underestimated how much i need - gimme more
+    // use 0 as initialization of realloc
     
     return NULL;
 }
@@ -189,4 +206,17 @@ void *turealloc(void *ptr, size_t new_size) {
 void tufree(void *ptr) {
     // same as free
     //i'm done. get rid of this memory
+
+    // header = (header *)ptr - sizeof(header);
+    // if magic of header = 0x01234567 {
+    //     free_block = (free_block *)header;
+    //     free_blocksize = size of header
+    //     free_blocknext = HEAD;
+    //     HEAD = free_block;
+    //     coalesce(free_block);
+    // }
+    // else {
+    //     print "MEMORY CORRUPTION DETECTED";
+    //     abort();
+    // }
 }
