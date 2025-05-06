@@ -194,7 +194,7 @@ void *tucalloc(size_t num, size_t size) {
 void *turealloc(void *ptr, size_t new_size) { //same as realloc
     // i have a block of memory and i underestimated how much i need - gimme more
     // use 0 as initialization of realloc
-    
+
     return NULL;
 }
 
